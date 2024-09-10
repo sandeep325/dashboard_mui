@@ -14,6 +14,7 @@ export const options = {
     title: "Company Performance",
     subtitle: "Sales, Expenses, and Profit: 2014-2017",
   },
+  colors:["#12cbb5","#b65dc1","#239ce6"]
 };
 
 export function BarChart() {
@@ -21,7 +22,7 @@ export function BarChart() {
     <Chart
       chartType="Bar"
       width="100%"
-      height="400px"
+      height="350px"
       data={data}
       options={options}
     />
