@@ -1,18 +1,43 @@
-.paddingAll{
+.paddingAll {
     padding: 10px 10px;
 }
+
 .priceTitle {
-font-weight: 600;
+    font-weight: 600;
 }
+
 .priceSubtitle {
-font-size: 14px;
+    font-size: 14px;
 }
-.iconContain{
-    margin-top:20px;
-    margin-left: 20px;
+
+.iconContain {
+    margin-top: 20px !important;
+    margin-left: 20px !important;
 }
+
 .icon-style {
-    color: blue;
+    color: #fff;
     padding-top: 10px;
     padding-left: 20px;
+}
+
+.gradient {
+    background: rgb(40, 34, 70) !important;
+    background: linear-gradient(158deg, rgba(40, 34, 70, 1) 0%, rgba(30, 47, 141, 1) 100%) !important;
+}
+
+.gradient-light1 {
+    background: rgb(34, 193, 195) !important;
+    background: linear-gradient(0deg, rgba(34, 193, 195, 1) 0%, rgba(253, 45, 192, 1) 100%) !important;
+}
+
+.gradient-light2 {
+    background: rgb(34, 195, 177) !important;
+    background: linear-gradient(0deg, rgba(34, 195, 177, 1) 0%, rgba(0, 214, 186, 1) 66%, rgba(43, 141, 240, 1) 100%, rgba(45, 126, 253, 1) 100%) !important;
+}
+
+.bgcolor {
+    background: #ECEFF1;
+    background: linear-gradient(158deg, rgb(224, 224, 224) 0%, rrgb(233, 237, 254) 100%) !important;
+
 }
