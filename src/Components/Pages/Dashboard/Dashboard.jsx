@@ -14,6 +14,7 @@ import StorefrontIcon from '@mui/icons-material/Storefront';
 import CreditCardIcon from '@mui/icons-material/CreditCard';
 import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import AccordionComp from './AccordionComp';
+import { BarChart } from '../../Charts/BarChart';
 const Dashboard = () => {
 
   const Item = styled(Paper)(({ theme }) => ({
@@ -106,7 +107,7 @@ const Dashboard = () => {
               <Grid item xs={8}>
                 <Card sx={{ height: 60 + "vh" }}>
                   <CardContent>
-
+                   <BarChart/>
                   </CardContent>
                 </Card>
               </Grid>
