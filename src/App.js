@@ -1,5 +1,6 @@
 import Dashboard from "./Components/Pages/Dashboard/Dashboard";
 import Settings from "./Components/Pages/Settings/Settings";
+import About from "./Components/Pages/About/About";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Dashboard/>}></Route>
           <Route path="/settings" exact element={<Settings/>}></Route>
+          <Route path="/about" exact element={<About/>} ></Route>
         </Routes>
       </BrowserRouter>
     </>
