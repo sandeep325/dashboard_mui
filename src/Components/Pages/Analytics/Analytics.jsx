@@ -8,23 +8,10 @@ import { styled } from '@mui/material/styles';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import CreditCardIcon from '@mui/icons-material/CreditCard';
-import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import Sidebar from '../../Sidebar/Sidebar';
+import { HorizontalBarChart } from '../../Charts/HorizontalBarChart';
 
 const Analytics = () => {
-
-    const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        ...theme.applyStyles('dark', {
-            backgroundColor: '#1A2027',
-        }),
-    }));
     return (
         <>
             <div className='bgcolor'>
@@ -109,7 +96,7 @@ const Analytics = () => {
                                 <Grid item xs={8}>
                                     <Card sx={{ height: 45 + "vh" }}>
                                         <CardContent>
-
+                                          <HorizontalBarChart/>
                                         </CardContent>
                                     </Card>
                                 </Grid>
