@@ -28,6 +28,7 @@ export const options = {
       0: { side: "right" },
     },
   },
+  colors:["#12cbb5","#b65dc1"]
 };
 
 export function HorizontalBarChart() {
