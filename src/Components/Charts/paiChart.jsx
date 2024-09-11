@@ -12,6 +12,7 @@ export const data = [
 
 export const options = {
   title: "My Daily Activities",
+  colors:["#12cbb5","#b65dc1","#239ce6","#109618","#FF6633"]
 };
 
 export function PaiChart() {
