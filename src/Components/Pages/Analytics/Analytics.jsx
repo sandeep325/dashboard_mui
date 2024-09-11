@@ -12,7 +12,7 @@ import Sidebar from '../../Sidebar/Sidebar';
 import { HorizontalBarChart } from '../../Charts/HorizontalBarChart';
 import { GeoChart } from '../../Charts/GeoChart';
 import { PaiChart } from '../../Charts/paiChart';
-
+import CountUp from 'react-countup';
 const Analytics = () => {
     return (
         <>
@@ -34,7 +34,7 @@ const Analytics = () => {
                                                     </Typography>
 
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
-                                                        26000
+                                                    <CountUp delay={0.6} end={26000} duration={1}/>
                                                     </Typography>
                                                     <Typography gutterBottom variant="body2" component="div" sx={{ color: "white" }}>
                                                         Since last weak
@@ -49,7 +49,7 @@ const Analytics = () => {
                                                     </Typography>
 
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
-                                                        26000
+                                                    <CountUp delay={0.6} end={26000} duration={1}/>
                                                     </Typography>
                                                     <Typography gutterBottom variant="body2" component="div" sx={{ color: "white" }}>
                                                         Since last weak
@@ -67,7 +67,7 @@ const Analytics = () => {
                                                     </Typography>
 
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
-                                                        26000
+                                                    <CountUp delay={0.6} end={26000} duration={1}/>
                                                     </Typography>
                                                     <Typography gutterBottom variant="body2" component="div" sx={{ color: "white" }}>
                                                         Since last weak
@@ -82,7 +82,7 @@ const Analytics = () => {
                                                     </Typography>
 
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
-                                                        26000
+                                                    <CountUp delay={0.6} end={26000} duration={1}/>
                                                     </Typography>
                                                     <Typography gutterBottom variant="body2" component="div" sx={{ color: "white" }}>
                                                         Since last weak
