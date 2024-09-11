@@ -36,7 +36,7 @@ export function HorizontalBarChart() {
     <Chart
       chartType="Bar"
       width="100%"
-      height="400px"
+      height="250px"
       data={data}
       options={options}
     />

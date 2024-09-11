@@ -10,6 +10,8 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Sidebar from '../../Sidebar/Sidebar';
 import { HorizontalBarChart } from '../../Charts/HorizontalBarChart';
+import { GeoChart } from '../../Charts/GeoChart';
+import { PaiChart } from '../../Charts/paiChart';
 
 const Analytics = () => {
     return (
@@ -25,7 +27,7 @@ const Analytics = () => {
                                 <Grid item xs={4}>
                                     <Stack direction="column" spacing={2} >
                                         <Stack direction="row" spacing={2} >
-                                            <Card sx={{ minWidth: 49 + "%", height: 140 }} className='gradient-light1'>
+                                            <Card sx={{ minWidth: 49 + "%", height: 21 + "vh" }} className='gradient-light1'>
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
                                                         Visitors
@@ -40,7 +42,7 @@ const Analytics = () => {
 
                                                 </CardContent>
                                             </Card>
-                                            <Card sx={{ minWidth: 49 + "%", height: 140 }} className='gradient-light2'>
+                                            <Card sx={{ minWidth: 49 + "%", height: 21 + "vh" }} className='gradient-light2'>
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
                                                         Visitors
@@ -58,7 +60,7 @@ const Analytics = () => {
                                         </Stack>
 
                                         <Stack direction="row" spacing={2} >
-                                            <Card sx={{ minWidth: 49 + "%", height: 140 }} className='gradient-light1'>
+                                            <Card sx={{ minWidth: 49 + "%", height: 21 + "vh" }} className='gradient-light1'>
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
                                                         Visitors
@@ -73,7 +75,7 @@ const Analytics = () => {
 
                                                 </CardContent>
                                             </Card>
-                                            <Card sx={{ minWidth: 49 + "%", height: 140 }} className='gradient-light2'>
+                                            <Card sx={{ minWidth: 49 + "%", height: 21 + "vh" }} className='gradient-light2'>
                                                 <CardContent>
                                                     <Typography gutterBottom variant="h5" component="div" sx={{ color: "white" }}>
                                                         Visitors
@@ -96,7 +98,7 @@ const Analytics = () => {
                                 <Grid item xs={8}>
                                     <Card sx={{ height: 45 + "vh" }}>
                                         <CardContent>
-                                          <HorizontalBarChart/>
+                                            <HorizontalBarChart />
                                         </CardContent>
                                     </Card>
                                 </Grid>
@@ -105,18 +107,19 @@ const Analytics = () => {
                             <Box height={20} />
 
                             <Grid container spacing={2}>
-                            <Grid item xs={8}>
-                                    <Card sx={{ height: 45 + "vh" }}>
+                                <Grid item xs={8}>
+                                    <Card sx={{ height: 45+ "vh" }}>
                                         <CardContent>
-
+                                            <GeoChart />
                                         </CardContent>
                                     </Card>
                                 </Grid>
                                 <Grid item xs={4}>
                                     <Card sx={{ height: 45 + "vh" }}>
                                         <CardContent>
-
+                                            <PaiChart />
                                         </CardContent>
+                                        <Box height={5}/>
                                     </Card>
                                 </Grid>
 
