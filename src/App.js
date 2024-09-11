@@ -4,6 +4,7 @@ import About from "./Components/Pages/About/About";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Analytics from "./Components/Pages/Analytics/Analytics";
 import  "./App.css";
+import Products from "./Components/Pages/Products/Products";
 function App() {
   return (
     <>
@@ -13,6 +14,7 @@ function App() {
           <Route path="/analytics" exact element={<Analytics/>}></Route>
           <Route path="/settings" exact element={<Settings/>}></Route>
           <Route path="/about" exact element={<About/>} ></Route>
+          <Route path="/products" exact element={<Products/>}></Route>
         </Routes>
       </BrowserRouter>
     </>
