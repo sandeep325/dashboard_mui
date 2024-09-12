@@ -23,7 +23,8 @@ import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
 import { Divider } from '@mui/material';
-
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import Button from "@mui/material/Button";
 function createData(id, name, calories, fat, carbs, protein) {
   return {
     id,
@@ -210,14 +211,16 @@ function EnhancedTableToolbar(props) {
 
         <Tooltip title="Filter list">
           <IconButton>
-          <AddIcon/>
+          <Button variant="contained" endIcon={<AddCircleIcon />}>
+              Add
+            </Button>
           </IconButton>
         </Tooltip>
       
     </Toolbar>
     <Divider/>
         <Box height={10}/>
-        
+
         </>
   );
 }
