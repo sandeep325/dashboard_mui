@@ -31,6 +31,7 @@ import Autocomplete from '@mui/material/Autocomplete';
 import Stack from "@mui/material/Stack";
 import { db } from "../../../Firebase-config";
 import Swal from "sweetalert2";
+import useDateTime from "../../CustomHooks/useDateTime";
 import {
   collection,
   getDocs,
@@ -164,13 +165,20 @@ export default function ProductsList() {
   const empCollectionRef = collection(db, "products");
 
   useEffect(() => {
+    console.log("Fetching data...");
     getUsers();
-  }, []);
+  },[]);
 
   const getUsers = async () => {
-    const data = await getDocs(empCollectionRef);
-    setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    try {
+      const data = await getDocs(empCollectionRef);
+      setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (error) {
+      console.error("Error fetching data: ", error);
+      Swal.fire("Error", "Failed to fetch data. Please try again later.", "error");
+    }
   };
+  
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -178,14 +186,14 @@ export default function ProductsList() {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
-    if (event.target.checked) {
-      const newSelected = rows.map((n) => n.id);
-      setSelected(newSelected);
-      return;
-    }
-    setSelected([]);
-  };
+//   const handleSelectAllClick = (event) => {
+//     if (event.target.checked) {
+//       const newSelected = rows.map((n) => n.id);
+//       setSelected(newSelected);
+//       return;
+//     }
+//     setSelected([]);
+//   };
 
   const handleClick = (event, id) => {
     const selectedIndex = selected.indexOf(id);
@@ -232,7 +240,7 @@ export default function ProductsList() {
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
     [order, orderBy, page, rowsPerPage],
   );
-
+// console.log(visibleRows);
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
@@ -287,7 +295,7 @@ export default function ProductsList() {
                 </TableRow>
               </TableHead>
             <TableBody>
-              {visibleRows.map((row, index) => {
+              {rows.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
                 const labelId = `enhanced-table-checkbox-${index}`;
 
@@ -321,7 +329,7 @@ export default function ProductsList() {
                     </TableCell>
                     <TableCell align="right">{row.Price}</TableCell>
                     <TableCell align="right">{row.category}</TableCell>
-                    <TableCell align="right">{row.carbs}</TableCell>
+                    <TableCell align="right">{row?.date}</TableCell>
                     <TableCell align="right">{row.protein}</TableCell>
                   </TableRow>
                 );
