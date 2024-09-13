@@ -1,4 +1,5 @@
 import * as React from 'react';
+import  {useEffect,useState} from "react";  
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -29,6 +30,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import Stack from "@mui/material/Stack";
 import { db } from "../../../Firebase-config";
+import Swal from "sweetalert2";
 import {
   collection,
   getDocs,
@@ -159,6 +161,17 @@ export default function ProductsList() {
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [rows,setRows] = React.useState([]);
 
+  const empCollectionRef = collection(db, "products");
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  const getUsers = async () => {
+    const data = await getDocs(empCollectionRef);
+    setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
@@ -253,19 +266,26 @@ export default function ProductsList() {
           </Stack>
           <Box height={10} />
         <TableContainer>
-          <Table
-            sx={{ minWidth: 750 }}
-            aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
-          >
-            <EnhancedTableHead
-              numSelected={selected.length}
-              order={order}
-              orderBy={orderBy}
-              onSelectAllClick={handleSelectAllClick}
-              onRequestSort={handleRequestSort}
-              rowCount={rows.length}
-            />
+        <Table stickyHeader aria-label="sticky table">
+           <TableHead>
+                <TableRow>
+                  <TableCell align="left" style={{ minWidth: "100px" }}>
+                    Name
+                  </TableCell>
+                  <TableCell align="left" style={{ minWidth: "100px" }}>
+                    Price
+                  </TableCell>
+                  <TableCell align="left" style={{ minWidth: "100px" }}>
+                    Category
+                  </TableCell>
+                  <TableCell align="left" style={{ minWidth: "100px" }}>
+                    Date
+                  </TableCell>
+                  <TableCell align="left" style={{ minWidth: "100px" }}>
+                    Action
+                  </TableCell>
+                </TableRow>
+              </TableHead>
             <TableBody>
               {visibleRows.map((row, index) => {
                 const isItemSelected = isSelected(row.id);
@@ -282,7 +302,7 @@ export default function ProductsList() {
                     selected={isItemSelected}
                     sx={{ cursor: 'pointer' }}
                   >
-                    <TableCell padding="checkbox">
+                    {/* <TableCell padding="checkbox">
                       <Checkbox
                         color="primary"
                         checked={isItemSelected}
@@ -290,17 +310,17 @@ export default function ProductsList() {
                           'aria-labelledby': labelId,
                         }}
                       />
-                    </TableCell>
+                    </TableCell> */}
                     <TableCell
                       component="th"
                       id={labelId}
                       scope="row"
                       padding="none"
                     >
-                      {row.name}
+                      {row.product_name}
                     </TableCell>
-                    <TableCell align="right">{row.calories}</TableCell>
-                    <TableCell align="right">{row.fat}</TableCell>
+                    <TableCell align="right">{row.Price}</TableCell>
+                    <TableCell align="right">{row.category}</TableCell>
                     <TableCell align="right">{row.carbs}</TableCell>
                     <TableCell align="right">{row.protein}</TableCell>
                   </TableRow>
