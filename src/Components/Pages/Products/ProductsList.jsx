@@ -26,8 +26,6 @@ import AddIcon from '@mui/icons-material/Add';
 import { Divider } from '@mui/material';
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Button from "@mui/material/Button";
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
 import Stack from "@mui/material/Stack";
 import { db } from "../../../Firebase-config";
 import Swal from "sweetalert2";
@@ -40,6 +38,11 @@ import {
   deleteDoc,
   doc,
 } from "firebase/firestore";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import Swal from "sweetalert2";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete"
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
