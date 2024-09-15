@@ -261,7 +261,7 @@ export default function ProductsList() {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                 <AddProduct/>
+                 <AddProduct CloseEvent={handleClose}/>
                 </Box>
             </Modal>
             {/* //   ---modale design end here--- */}
