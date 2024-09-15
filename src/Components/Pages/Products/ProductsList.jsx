@@ -64,36 +64,6 @@ const top100Films = [
     { label: 'The Dark Knight', year: 2008 }, 
   ];
 const headCells = [
-//   {
-//     id: 'name',
-//     numeric: false,
-//     disablePadding: true,
-//     label: 'Dessert (100g serving)',
-//   },
-//   {
-//     id: 'calories',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Calories',
-//   },
-//   {
-//     id: 'fat',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Fat (g)',
-//   },
-//   {
-//     id: 'carbs',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Carbs (g)',
-//   },
-//   {
-//     id: 'protein',
-//     numeric: true,
-//     disablePadding: false,
-//     label: 'Protein (g)',
-//   },
 ];
 
 function EnhancedTableHead(props) {
@@ -179,21 +149,11 @@ export default function ProductsList() {
     }
   };
   
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
-//   const handleSelectAllClick = (event) => {
-//     if (event.target.checked) {
-//       const newSelected = rows.map((n) => n.id);
-//       setSelected(newSelected);
-//       return;
-//     }
-//     setSelected([]);
-//   };
 
   const handleClick = (event, id) => {
     const selectedIndex = selected.indexOf(id);
@@ -229,7 +189,6 @@ export default function ProductsList() {
 
   const isSelected = (id) => selected.indexOf(id) !== -1;
 
-  // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
@@ -240,7 +199,6 @@ export default function ProductsList() {
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
     [order, orderBy, page, rowsPerPage],
   );
-// console.log(visibleRows);
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
@@ -255,7 +213,6 @@ export default function ProductsList() {
           <Divider />
           <Box height={10} />
      <Stack direction="row" spacing={2} className="my-2 mb-2">
-          {/* Products List */}
           <Autocomplete
       disablePortal
       options={top100Films}
