@@ -224,7 +224,7 @@ const deleteUser = (id) => {
     Swal.fire("Deleted!", "Your file has been deleted.", "success");
     getUsers();
   };
-  
+
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
@@ -238,15 +238,19 @@ const deleteUser = (id) => {
           </Typography>
           <Divider />
           <Box height={10} />
-     <Stack direction="row" spacing={2} className="my-2 mb-2">
-          <Autocomplete
-      disablePortal
-      options={top100Films}
-      sx={{ width: 300 }}
-      renderInput={(params) => <TextField {...params} label="Movie" />}
-    />
-       
-       <Typography
+          <Stack direction="row" spacing={2} className="my-2 mb-2">
+            <Autocomplete
+              disablePortal
+              id="combo-box-demo"
+              options={rows}
+              sx={{ width: 300 }}
+            //   onChange={(e, v) => filterData(v)}
+              getOptionLabel={(rows) => rows.product_name || ""}
+              renderInput={(params) => (
+                <TextField {...params} size="small" label="Search Products" />
+              )}
+            />
+            <Typography
               variant="h6"
               component="div"
               sx={{ flexGrow: 1 }}
@@ -256,6 +260,8 @@ const deleteUser = (id) => {
             </Button>
           </Stack>
           <Box height={10} />
+
+
         <TableContainer>
         <Table stickyHeader aria-label="sticky table">
            <TableHead>
@@ -313,7 +319,6 @@ const deleteUser = (id) => {
                     <TableCell align="left">{row.Price}</TableCell>
                     <TableCell align="left">{row.category}</TableCell>
                     <TableCell align="left">{row?.date}</TableCell>
-                    <TableCell align="left">{row.protein}</TableCell>
                     <TableCell  align="left">
                     <Stack spacing={2} direction="row">
                             <EditIcon
