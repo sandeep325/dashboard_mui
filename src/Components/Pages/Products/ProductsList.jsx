@@ -19,7 +19,6 @@ import IconButton from '@mui/material/IconButton';
 import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
-import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 import AddIcon from '@mui/icons-material/Add';
@@ -28,7 +27,6 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { db } from "../../../Firebase-config";
-import Swal from "sweetalert2";
 import useDateTime from "../../CustomHooks/useDateTime";
 import {
   collection,
@@ -202,6 +200,31 @@ export default function ProductsList() {
         .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
     [order, orderBy, page, rowsPerPage],
   );
+
+//   Delete profucts here functionn
+const deleteUser = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.value) {
+        deleteApi(id);
+      }
+    });
+  };
+
+  const deleteApi = async (id) => {
+    const userDoc = doc(db, "products", id);
+    await deleteDoc(userDoc);
+    Swal.fire("Deleted!", "Your file has been deleted.", "success");
+    getUsers();
+  };
+  
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
@@ -287,10 +310,32 @@ export default function ProductsList() {
                     >
                       {row.product_name}
                     </TableCell>
-                    <TableCell align="right">{row.Price}</TableCell>
-                    <TableCell align="right">{row.category}</TableCell>
-                    <TableCell align="right">{row?.date}</TableCell>
-                    <TableCell align="right">{row.protein}</TableCell>
+                    <TableCell align="left">{row.Price}</TableCell>
+                    <TableCell align="left">{row.category}</TableCell>
+                    <TableCell align="left">{row?.date}</TableCell>
+                    <TableCell align="left">{row.protein}</TableCell>
+                    <TableCell  align="left">
+                    <Stack spacing={2} direction="row">
+                            <EditIcon
+                              style={{
+                                fontSize: "20px",
+                                color: "blue",
+                                cursor: "pointer",
+                              }}
+                              className="cursor-pointer"
+                            />
+                            <DeleteIcon
+                              style={{
+                                fontSize: "20px",
+                                color: "darkred",
+                                cursor: "pointer",
+                              }}
+                              onClick={() => {
+                                deleteUser(row.id);
+                              }}
+                            />
+                          </Stack>
+                    </TableCell>
                   </TableRow>
                 );
               })}
