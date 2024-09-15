@@ -225,6 +225,15 @@ const deleteUser = (id) => {
     getUsers();
   };
 
+//   make filter data searcheble--
+  const filterData = (v) => {
+    if (v) {
+      setRows([v]);
+    } else {
+      getUsers();
+    }
+  };
+  
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
@@ -244,7 +253,7 @@ const deleteUser = (id) => {
               id="combo-box-demo"
               options={rows}
               sx={{ width: 300 }}
-            //   onChange={(e, v) => filterData(v)}
+              onChange={(e, v) => filterData(v)}
               getOptionLabel={(rows) => rows.product_name || ""}
               renderInput={(params) => (
                 <TextField {...params} size="small" label="Search Products" />
