@@ -53,8 +53,6 @@ const AddProduct = (props) => {
             setCategory(e.target?.value);
         }
     }
-
-
     const CreateProdcut = async (e) => {
         e.preventDefault();
         await addDoc(empCollectionRef,
@@ -90,7 +88,6 @@ const AddProduct = (props) => {
         </IconButton>
         <Box height={20} />
         <Grid container spacing={2}>
-
             <Grid item xs={12}>
                 <TextField
                     id="outlined-basic"
@@ -129,7 +126,6 @@ const AddProduct = (props) => {
                     sx={{ minWidth: "100%" }}
                     value={Price} onChange={handleChange} />
             </Grid>
-
             <Grid item xs={6}>
                 <TextField
                     id="outlined-basic"
@@ -149,7 +145,6 @@ const AddProduct = (props) => {
                     ))}
                 </TextField>
             </Grid>
-
             <Grid item xs={12}>
                 <Typography variant='h5' align='center'>
                     <Button variant='contained' onClick={CreateProdcut} >
