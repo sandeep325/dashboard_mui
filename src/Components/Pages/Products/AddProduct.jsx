@@ -1,5 +1,5 @@
 import Box from '@mui/material/Box';
-import React from "react";
+import React, { useState } from "react";
 import Typography from '@mui/material/Typography';
 import { Button, IconButton } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
@@ -7,6 +7,13 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 const AddProduct = (props) => {
 
+    const CreateProdcut = ()=>{
+        const [name,setName] = useState("");
+        const [Price,setPrice] = useState(0);
+        const [category,setCategory] = useState("");
+        
+
+    }
     return (<>
         <Box sx={{ m: 2 }} />
         <Typography variant="h5" align='center'>
@@ -35,7 +42,7 @@ const AddProduct = (props) => {
 
             <Grid item xs={12}>
                 <Typography variant='h5' align='center'>
-                    <Button variant='contained' >
+                    <Button variant='contained' onClick={CreateProdcut} >
                         Submit
                     </Button>
                 </Typography>
