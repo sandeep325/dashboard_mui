@@ -7,12 +7,31 @@ import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 const AddProduct = (props) => {
 
-    const CreateProdcut = ()=>{
-        const [name,setName] = useState("");
-        const [Price,setPrice] = useState(0);
-        const [category,setCategory] = useState("");
-        
+    const [name, setName] = useState("");
+    const [Price, setPrice] = useState("");
+    const [category, setCategory] = useState("");
 
+    const handleChange = (e) => { 
+      if(e.target?.name=="name") {
+        setName(e.target?.value);
+      }
+      else if(e.target?.name=="price") {
+        setPrice(e.target?.value);
+      } 
+      else if(e.target?.name=="category") {
+        setCategory(e.target?.value);
+      }
+    }
+
+
+    const CreateProdcut = (e) => {
+         e.preventDefault();
+         let obj ={
+            'product_name':name,
+            'Price':Price,
+            'category':category
+         }
+         console.log(obj);
     }
     return (<>
         <Box sx={{ m: 2 }} />
@@ -29,15 +48,15 @@ const AddProduct = (props) => {
         <Grid container spacing={2}>
 
             <Grid item xs={12}>
-                <TextField id="outlined-basic" label="Name" variant="outlined" size='small' sx={{ minWidth: "100%" }} />
+                <TextField id="outlined-basic" label="Name" name='name' variant="outlined" size='small' sx={{ minWidth: "100%" }}  onChange={handleChange} />
             </Grid>
 
             <Grid item xs={6}>
-                <TextField id="outlined-basic" label="Price" variant="outlined" size='small' sx={{ minWidth: "100%" }} />
+                <TextField id="outlined-basic" label="Price"  name='price' type='number' variant="outlined" size='small' sx={{ minWidth: "100%" }} value={Price} onChange={handleChange} />
             </Grid>
 
             <Grid item xs={6}>
-                <TextField id="outlined-basic" label="Category" variant="outlined" size='small' sx={{ minWidth: "100%" }} />
+                <TextField id="outlined-basic" label="Category" name='category' variant="outlined" size='small' sx={{ minWidth: "100%" }} value={category} onChange={handleChange} />
             </Grid>
 
             <Grid item xs={12}>
