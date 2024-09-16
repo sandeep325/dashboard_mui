@@ -9,7 +9,10 @@ import MenuItem from '@mui/material/MenuItem';
 import InputAdornment from '@mui/material/InputAdornment';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { db } from '../../../Firebase-config';
-import { collection, getDocs, addDoc,} from "firebase/firestore";
+import { collection, getDocs, addDoc, } from "firebase/firestore";
+import Swal from 'sweetalert2';
+const empCollectionRef = collection(db, "products");
+
 const categoryList = [
     {
         value: 'Phone',
@@ -34,10 +37,10 @@ const categoryList = [
 ];
 
 const AddProduct = (props) => {
-
     const [name, setName] = useState("");
     const [Price, setPrice] = useState("");
     const [category, setCategory] = useState("");
+    const [rows, setRows] = useState([]);
 
     const handleChange = (e) => {
         if (e.target?.name == "name") {
@@ -52,15 +55,31 @@ const AddProduct = (props) => {
     }
 
 
-    const CreateProdcut = (e) => {
+    const CreateProdcut = async (e) => {
         e.preventDefault();
-        let obj = {
-            'product_name': name,
-            'Price': Price,
-            'category': category
-        }
-        console.log(obj);
+        await addDoc(empCollectionRef,
+            {
+                product_name: name,
+                Price: Price,
+                category: category,
+                date: String(new Date()),
+            }
+        );
+        getUsers();
+        props.CloseEvent();
+        Swal.fire("Submitted!", "Your product add successfully.");
     }
+
+    const getUsers = async () => {
+        try {
+            const data = await getDocs(empCollectionRef);
+            setRows(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+        } catch (error) {
+            console.error("Error fetching data: ", error);
+            Swal.fire("Error", "Failed to fetch data. Please try again later.", "error");
+        }
+    };
+
     return (<>
         <Box sx={{ m: 2 }} />
         <Typography variant="h5" align='center'>
