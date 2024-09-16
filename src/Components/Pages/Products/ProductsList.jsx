@@ -13,7 +13,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import Tooltip from '@mui/material/Tooltip';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
@@ -22,16 +21,8 @@ import AddCircleIcon from "@mui/icons-material/AddCircle";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import { db } from "../../../Firebase-config";
-import useDateTime from "../../CustomHooks/useDateTime";
 import Modal from '@mui/material/Modal';
-import {
-    collection,
-    getDocs,
-    addDoc,
-    updateDoc,
-    deleteDoc,
-    doc,
-} from "firebase/firestore";
+import { collection, getDocs, addDoc, updateDoc, deleteDoc, doc, } from "firebase/firestore";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Swal from "sweetalert2";
@@ -69,16 +60,8 @@ function getComparator(order, orderBy) {
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
-
-const top100Films = [
-    { label: 'The Shawshank Redemption', year: 1994 },
-    { label: 'The Godfather', year: 1972 },
-    { label: 'The Godfather: Part II', year: 1974 },
-    { label: 'The Dark Knight', year: 2008 },
-];
 const headCells = [
 ];
-
 function EnhancedTableHead(props) {
     const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
         props;
@@ -135,7 +118,6 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-
 export default function ProductsList() {
     const [order, setOrder] = useState('asc');
     const [orderBy, setOrderBy] = useState('calories');
@@ -144,13 +126,11 @@ export default function ProductsList() {
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
     const [rows, setRows] = useState([]);
-
     const empCollectionRef = collection(db, "products");
     // for modal use
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-
 
     useEffect(() => {
         console.log("Fetching data...");
@@ -172,11 +152,9 @@ export default function ProductsList() {
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
-
     const handleClick = (event, id) => {
         const selectedIndex = selected.indexOf(id);
         let newSelected = [];
-
         if (selectedIndex === -1) {
             newSelected = newSelected.concat(selected, id);
         } else if (selectedIndex === 0) {
@@ -191,7 +169,6 @@ export default function ProductsList() {
         }
         setSelected(newSelected);
     };
-
     const handleChangePage = (event, newPage) => {
         setPage(newPage);
     };
@@ -200,16 +177,13 @@ export default function ProductsList() {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
-
     const handleChangeDense = (event) => {
         setDense(event.target.checked);
     };
 
     const isSelected = (id) => selected.indexOf(id) !== -1;
-
     const emptyRows =
         page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
-
     const visibleRows = React.useMemo(
         () =>
             [...rows]
@@ -217,7 +191,6 @@ export default function ProductsList() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage),
         [order, orderBy, page, rowsPerPage],
     );
-
     //   Delete profucts here functionn
     const deleteUser = (id) => {
         Swal.fire({
@@ -241,7 +214,6 @@ export default function ProductsList() {
         Swal.fire("Deleted!", "Your file has been deleted.", "success");
         getUsers();
     };
-
     //   make filter data searcheble--
     const filterData = (v) => {
         if (v) {
@@ -258,10 +230,9 @@ export default function ProductsList() {
                 open={open}
                 // onClose={handleClose}
                 aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
-            >
+                aria-describedby="modal-modal-description">
                 <Box sx={style}>
-                 <AddProduct CloseEvent={handleClose}/>
+                    <AddProduct CloseEvent={handleClose} />
                 </Box>
             </Modal>
             {/* //   ---modale design end here--- */}
@@ -299,7 +270,6 @@ export default function ProductsList() {
                     </Button>
                 </Stack>
                 <Box height={10} />
-
                 <TableContainer>
                     <Table stickyHeader aria-label="sticky table">
                         <TableHead>
@@ -325,7 +295,6 @@ export default function ProductsList() {
                             {rows.map((row, index) => {
                                 const isItemSelected = isSelected(row.id);
                                 const labelId = `enhanced-table-checkbox-${index}`;
-
                                 return (
                                     <TableRow
                                         hover

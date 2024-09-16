@@ -6,29 +6,32 @@ import CloseIcon from '@mui/icons-material/Close';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
-
-const currencies = [
+import InputAdornment from '@mui/material/InputAdornment';
+import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
+import { db } from '../../../Firebase-config';
+import { collection, getDocs, addDoc,} from "firebase/firestore";
+const categoryList = [
     {
-      value: 'Phone',
-      label: 'Phone',
+        value: 'Phone',
+        label: 'Phone',
     },
     {
-      value: 'Laptop',
-      label: 'Laptop',
+        value: 'Laptop',
+        label: 'Laptop',
     },
     {
-      value: 'Headset',
-      label: 'Headset',
+        value: 'Headset',
+        label: 'Headset',
     },
     {
-      value: 'Keyboard',
-      label: 'Keyboard',
+        value: 'Keyboard',
+        label: 'Keyboard',
     },
     {
         value: 'Mouse',
         label: 'Mouse',
-      },
-  ];
+    },
+];
 
 const AddProduct = (props) => {
 
@@ -66,9 +69,6 @@ const AddProduct = (props) => {
         <IconButton style={{ position: "absolute", top: "0", right: "0" }} onClick={props?.CloseEvent}>
             <CloseIcon />
         </IconButton>
-        {/* <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-        </Typography> */}
         <Box height={20} />
         <Grid container spacing={2}>
 
@@ -89,6 +89,22 @@ const AddProduct = (props) => {
                     label="Price"
                     name='price'
                     type='number'
+                    //         InputProps={{
+                    //             startAdornment:(
+                    //   <InputAdornment position="start">
+                    //     <CurrencyRupeeIcon />
+                    //   </InputAdornment>
+                    //         )
+                    //         }}
+                    slotProps={{
+                        input: {
+                            startAdornment: (
+                                <InputAdornment position="start">
+                                    <CurrencyRupeeIcon />
+                                </InputAdornment>
+                            ),
+                        },
+                    }}
                     variant="outlined"
                     size='small'
                     sx={{ minWidth: "100%" }}
@@ -105,13 +121,14 @@ const AddProduct = (props) => {
                     size='small'
                     sx={{ minWidth: "100%" }}
                     value={category}
-                    onChange={handleChange} >
-                     {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-                    </TextField>
+                    onChange={handleChange}>
+
+                    {categoryList.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
+                </TextField>
             </Grid>
 
             <Grid item xs={12}>

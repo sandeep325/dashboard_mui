@@ -18,7 +18,6 @@ import { BarChart } from '../../Charts/BarChart';
 import CountUp from 'react-countup';
 
 const Dashboard = () => {
-
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: '#fff',
     ...theme.typography.body2,
@@ -37,7 +36,6 @@ const Dashboard = () => {
       <Box sx={{ display: "flex" }}>
         <Sidebar />
         <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={2}>
               <Grid item xs={8}>
@@ -51,10 +49,8 @@ const Dashboard = () => {
                       <Typography gutterBottom variant="body2" component="div" sx={{ color: "white" }}>
                         Total Earning
                       </Typography>
-
                     </CardContent>
                   </Card>
-
                   <Card sx={{ minWidth: 49 + "%", height: 140 }} className='gradient-light1'>
                     <CardContent>
                       <div style={{ color: "#fff" }}><ShoppingBagIcon /></div>

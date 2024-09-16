@@ -3,8 +3,6 @@ import Navbar from '../../Nvbar/Navbar';
 import Box from '@mui/material/Box';
 import Sidebar from '../../Sidebar/Sidebar';
 import ProductsList from './ProductsList';
-
-
 const Products = () => {
     return (
         <div className='bgcolor' >
