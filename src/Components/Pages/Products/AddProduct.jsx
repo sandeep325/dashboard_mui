@@ -11,8 +11,8 @@ import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { db } from '../../../Firebase-config';
 import { collection, getDocs, addDoc, } from "firebase/firestore";
 import Swal from 'sweetalert2';
+import { useAppStore } from '../../../AppStore';
 const empCollectionRef = collection(db, "products");
-
 const categoryList = [
     {
         value: 'Phone',
@@ -40,8 +40,8 @@ const AddProduct = (props) => {
     const [name, setName] = useState("");
     const [Price, setPrice] = useState("");
     const [category, setCategory] = useState("");
-    const [rows, setRows] = useState([]);
-
+    // const [rows, setRows] = useState([]);
+const setRows = useAppStore((state)=> state.setRows);
     const handleChange = (e) => {
         if (e.target?.name == "name") {
             setName(e.target?.value);

@@ -29,6 +29,8 @@ import Swal from "sweetalert2";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete"
 import AddProduct from './AddProduct';
+import { useAppStore } from '../../../AppStore';
+import EditProduct from './EditProduct';
 
 
 // style for modal
@@ -125,12 +127,21 @@ export default function ProductsList() {
     const [page, setPage] = useState(0);
     const [dense, setDense] = useState(false);
     const [rowsPerPage, setRowsPerPage] = useState(5);
-    const [rows, setRows] = useState([]);
+    const [form,setForm] = useState({});
+    // const [rows, setRows] = useState([]);
+
+    const setRows = useAppStore((state) => state.setRows);
+    const rows = useAppStore((state) => state.rows);
+
     const empCollectionRef = collection(db, "products");
     // for modal use
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+
+    const [editOpen, setEditOpen] = React.useState(false);
+    const handleEditOpen = () => setEditOpen(true);
+    const handleEditClose = () => setEditOpen(false);
 
     useEffect(() => {
         console.log("Fetching data...");
@@ -222,7 +233,13 @@ export default function ProductsList() {
             getUsers();
         }
     };
+// --Edit dataa function for pass data to edit modal from here --
+const editData =(id,product_name,price,category)=>{
+const data = {id,product_name,price,category};
+setForm(data);
+handleEditOpen();
 
+}
     return (
         <Box sx={{ width: '100%' }}>
             {/* // --- modal design here --- */}
@@ -236,6 +253,18 @@ export default function ProductsList() {
                 </Box>
             </Modal>
             {/* //   ---modale design end here--- */}
+
+            {/* modal for edit product */}
+            <Modal
+                open={editOpen}
+                // onClose={handleEditClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description">
+                <Box sx={style}>
+                    <EditProduct CloseEvent={handleEditClose} EditFormData={form} />
+                </Box>
+            </Modal>
+
 
             <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
                 <Typography
@@ -326,6 +355,9 @@ export default function ProductsList() {
                                                         cursor: "pointer",
                                                     }}
                                                     className="cursor-pointer"
+                                                    onClick={()=>{
+                                                        editData(row?.id, row.product_name,row.Price,row.category);
+                                                    }}
                                                 />
                                                 <DeleteIcon
                                                     style={{
