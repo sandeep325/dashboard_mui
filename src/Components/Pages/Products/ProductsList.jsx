@@ -31,7 +31,7 @@ import Autocomplete from "@mui/material/Autocomplete"
 import AddProduct from './AddProduct';
 import { useAppStore } from '../../../AppStore';
 import EditProduct from './EditProduct';
-
+import Skeleton from '@mui/material/Skeleton';
 
 // style for modal
 const style = {
@@ -266,6 +266,7 @@ handleEditOpen();
             </Modal>
 
 
+           {rows?.length >0 &&(<>
             <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
                 <Typography
                     gutterBottom
@@ -396,10 +397,29 @@ handleEditOpen();
                     onRowsPerPageChange={handleChangeRowsPerPage}
                 />
             </Paper>
-            <FormControlLabel
+           </>)}
+            
+            {rows?.length ==0 && (<>
+                <Paper sx={{ width: "98%", overflow: "hidden", padding: "12px" }}>
+                <Box height={20}/>
+                <Skeleton variant='rectangular' width={'100%'} height={30}/>
+                <Box height={40}/>
+                <Skeleton variant='rectangular' width={'100%'} height={60}/>
+                <Box height={20}/>
+                <Skeleton variant='rectangular' width={'100%'} height={60}/>
+                <Box height={20}/>
+                <Skeleton variant='rectangular' width={'100%'} height={60}/>
+                <Box height={20}/>
+                <Skeleton variant='rectangular' width={'100%'} height={60}/>
+                <Box height={20}/>
+                <Skeleton variant='rectangular' width={'100%'} height={60}/>
+                <Box height={20}/>
+                </Paper>
+            </>)}
+
+            {/* <FormControlLabel
                 control={<Switch checked={dense} onChange={handleChangeDense} />}
-                label="Dense padding"
-            />
+                label="Dense padding"/> */}
         </Box>
     );
 }
