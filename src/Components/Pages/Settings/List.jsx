@@ -3,8 +3,49 @@ import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
+import CardContent from '@mui/material/CardContent';
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
+import { styled } from '@mui/material/styles';
+import Profile from './Profile';
+import Personal from './Personal';
 
-function CustomTabPanel(props) {
+  const StyledTabs = styled((props) => (
+    <Tabs
+      {...props}
+      TabIndicatorProps={{ children: <span className="MuiTabs-indicatorSpan" /> }}
+    />
+  ))({
+    '& .MuiTabs-indicator': {
+      display: 'flex',
+      justifyContent: 'center',
+      backgroundColor: 'transparent',
+    },
+    '& .MuiTabs-indicatorSpan': {
+      maxWidth: 40,
+      width: '100%',
+      backgroundColor: '#635ee7',
+    },
+  });
+  
+  const StyledTab = styled((props) => <Tab disableRipple {...props} />)(
+    ({ theme }) => ({
+      textTransform: 'none',
+      fontWeight: theme.typography.fontWeightRegular,
+      fontSize: theme.typography.pxToRem(15),
+      marginRight: theme.spacing(1),
+      color:"#141414",
+      fontWeight:400,
+      '&.Mui-selected': {
+        color: '#1fa0e1',
+      },
+      '&.Mui-focusVisible': {
+        backgroundColor: '#1fa0e1',
+      },
+    }),
+  );
+
+function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -20,7 +61,7 @@ function CustomTabPanel(props) {
   );
 }
 
-CustomTabPanel.propTypes = {
+TabPanel.propTypes = {
   children: PropTypes.node,
   index: PropTypes.number.isRequired,
   value: PropTypes.number.isRequired,
@@ -41,23 +82,28 @@ export default function List() {
   };
 
   return (
-    <Box sx={{ width: '100%' }}>
+    <Card>
+        <CardContent>
+        <Box sx={{ width: '100%' }}>
       <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-        <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-        </Tabs>
+        <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
+          <StyledTab label="Profile" {...a11yProps(0)} />
+          <StyledTab label="Personal" {...a11yProps(1)} />
+          {/* <StyledTab label="Item Three" {...a11yProps(2)} /> */}
+        </StyledTabs>
       </Box>
-      <CustomTabPanel value={value} index={0}>
-        Item One
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={1}>
-        Item Two
-      </CustomTabPanel>
-      <CustomTabPanel value={value} index={2}>
+      <TabPanel value={value} index={0}>
+           <Profile/>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+      <Personal/>
+      </TabPanel>
+      {/* <TabPanel value={value} index={2}>
         Item Three
-      </CustomTabPanel>
+      </TabPanel> */}
     </Box>
+        </CardContent>
+    </Card>
+    
   );
 }
