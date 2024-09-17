@@ -137,7 +137,6 @@ const setRows = useAppStore((state)=> state.setRows);
                     sx={{ minWidth: "100%" }}
                     value={category}
                     onChange={handleChange}>
-
                     {categoryList.map((option) => (
                         <MenuItem key={option.value} value={option.value}>
                             {option.label}

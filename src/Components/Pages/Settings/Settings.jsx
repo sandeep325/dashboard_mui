@@ -1,9 +1,7 @@
 import React from 'react'
 import Sidebar from '../../Sidebar/Sidebar';
 import Navbar from '../../Nvbar/Navbar';
-
 import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import List from './List';
 const Settings = () => {
   return (

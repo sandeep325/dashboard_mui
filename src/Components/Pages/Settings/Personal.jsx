@@ -3,7 +3,6 @@ import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { Divider, Grid2 } from '@mui/material';
 import TextField from '@mui/material/TextField';
@@ -89,7 +88,6 @@ const Personal = () => {
                                 <Typography gutterBottom variant="h6" sx={{ color: "#141414" }}>
                                     Contact Information
                                 </Typography>
-                                {/* <Box height={20} /> */}
                                 <Divider />
                                 <Box height={20} />
                                 <Grid container spacing={2}>
@@ -140,7 +138,6 @@ const Personal = () => {
 
                 </Grid>
             </Box>
-
         </div >
     )
 }

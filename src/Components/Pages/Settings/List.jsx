@@ -5,7 +5,6 @@ import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 import CardContent from '@mui/material/CardContent';
 import Card from '@mui/material/Card';
-import Stack from '@mui/material/Stack';
 import { styled } from '@mui/material/styles';
 import Profile from './Profile';
 import Personal from './Personal';
@@ -89,7 +88,6 @@ export default function List() {
         <StyledTabs value={value} onChange={handleChange} aria-label="basic tabs example">
           <StyledTab label="Profile" {...a11yProps(0)} />
           <StyledTab label="Personal" {...a11yProps(1)} />
-          {/* <StyledTab label="Item Three" {...a11yProps(2)} /> */}
         </StyledTabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -98,9 +96,7 @@ export default function List() {
       <TabPanel value={value} index={1}>
       <Personal/>
       </TabPanel>
-      {/* <TabPanel value={value} index={2}>
-        Item Three
-      </TabPanel> */}
+       
     </Box>
         </CardContent>
     </Card>

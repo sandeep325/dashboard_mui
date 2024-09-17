@@ -13,8 +13,6 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Switch from '@mui/material/Switch';
 import { visuallyHidden } from '@mui/utils';
 import { Divider } from '@mui/material';
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -46,7 +44,6 @@ const style = {
     p: 4,
 };
 //   end style for modal
-
 function descendingComparator(a, b, orderBy) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
@@ -56,7 +53,6 @@ function descendingComparator(a, b, orderBy) {
     }
     return 0;
 }
-
 function getComparator(order, orderBy) {
     return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
