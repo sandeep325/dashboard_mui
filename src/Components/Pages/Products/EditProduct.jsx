@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import InputAdornment from '@mui/material/InputAdornment';
 import CurrencyRupeeIcon from '@mui/icons-material/CurrencyRupee';
 import { db } from '../../../Firebase-config';
-import { collection, getDocs, addDoc, } from "firebase/firestore";
+import { collection, getDocs, addDoc,doc, updateDoc } from "firebase/firestore";
 import Swal from 'sweetalert2';
 import { useAppStore } from '../../../AppStore';
 const empCollectionRef = collection(db, "products");
@@ -62,17 +62,17 @@ const setRows = useAppStore((state)=> state.setRows);
     }
     const CreateProdcut = async (e) => {
         e.preventDefault();
-        await addDoc(empCollectionRef,
-            {
-                product_name: name,
+        const userDocs = doc(db,'products',props?.EditFormData?.id);
+        const newflied = {
+                      product_name: name,
                 Price: Price,
                 category: category,
                 date: String(new Date()),
-            }
-        );
-        getUsers();
+        }
+        await updateDoc(userDocs, newflied);
+           getUsers();
         props.CloseEvent();
-        Swal.fire("Submitted!", "Your product add successfully.");
+        Swal.fire("Submitted!", "Your product edit successfully.");
     }
 
     const getUsers = async () => {
